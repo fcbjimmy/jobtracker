@@ -1,3 +1,6 @@
+require("dotenv");
+require("express-async-errors");
+
 //express
 const express = require("express");
 const app = express();
@@ -9,12 +12,13 @@ const app = express();
 //routers
 
 //middleware
+const notFound = require("./middleware/not-found");
 
 //routers
 app.get("/", (req, res) => {
   res.send("hello world");
 });
-
+app.use(notFound);
 //routes
 
 //port
