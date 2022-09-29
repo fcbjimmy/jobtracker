@@ -27,12 +27,19 @@ const errorHandlerMiddleware = (err, req, res, next) => {
   }
 
   if (err.name === "CastError") {
-    CustomError.msg = `no item found with id ${err.value}`;
+    CustomError.msg = `no item found with id ${err.value} hi`;
+    CustomError.statusCode = 404;
+  }
+
+  if (err.name === "CastError" && Object.values(err.value).length > 1) {
+    CustomError.msg = `no item found with id ${Object.values(err.value)[0]}`;
     CustomError.statusCode = 404;
   }
 
   // return res
   //   .status(StatusCodes.INTERNAL_SERVER_ERROR)
   //   .json({ msg: "Something went wrong, please try again later" });
-  return res.status(CustomError.statusCode).json({ msg: CustomError.msg });
+  return res.status(CustomError.statusCode).json(CustomError.msg);
 };
+
+module.exports = errorHandlerMiddleware;
