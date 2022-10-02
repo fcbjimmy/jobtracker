@@ -1,29 +1,69 @@
 import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as yup from "yup";
+import axios from "axios";
+import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
+
+const schema = yup.object().shape({
+  email: yup
+    .string()
+    .email("Please enter a valid email!")
+    .required("Email is required!"),
+  password: yup.string().required("Password is required!"),
+});
 
 const Login = () => {
   const {
     register,
     handleSubmit,
-    watch,
     formState: { errors },
-  } = useForm();
-  const onSubmit = (data) => console.log(data);
+    reset,
+  } = useForm({ resolver: yupResolver(schema) });
 
-  console.log(watch("example")); // watch input value by passing the name of it
+  let navigate = useNavigate();
+
+  const onSubmitHandler = async (data) => {
+    const { email, password } = data;
+    try {
+      const response = await axios.post("/api/v1/auth/login", {
+        email,
+        password,
+      });
+      console.log(response);
+      if ((response.status = 200)) {
+        toast.success("Logged in", { position: "top-center" });
+        navigate("/dashboard");
+      }
+    } catch (error) {
+      console.log(error);
+    }
+    reset();
+  };
 
   return (
-    /* "handleSubmit" will validate your inputs before invoking "onSubmit" */
-    <form onSubmit={handleSubmit(onSubmit)}>
-      {/* register your input into the hook by invoking the "register" function */}
-      <input defaultValue="test" {...register("example")} />
-
-      {/* include validation with required or other standard HTML validation rules */}
-      <input {...register("exampleRequired", { required: true })} />
-      {/* errors will return when field validation fails  */}
-      {errors.exampleRequired && <span>This field is required</span>}
-
-      <input type="submit" />
-    </form>
+    <>
+      <h1>Log In</h1>
+      <form onSubmit={handleSubmit(onSubmitHandler)}>
+        <p>{errors.email?.message}</p>
+        <label htmlFor="email">Email</label>
+        <input
+          {...register("email")}
+          type="email"
+          placeholder="email"
+          id="email"
+        />
+        <p>{errors.password?.message}</p>
+        <label htmlFor="password">Password</label>
+        <input
+          {...register("password")}
+          type="password"
+          id="password"
+          placeholder="password"
+        />
+        <button type="submit">Log In</button>
+      </form>
+    </>
   );
 };
 

@@ -6,6 +6,8 @@ const express = require("express");
 const app = express();
 
 //extra packages/security packages
+const cors = require("cors");
+app.use(cors());
 
 //db
 const connectDB = require("./db/connectDB");
