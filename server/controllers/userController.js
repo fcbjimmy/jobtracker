@@ -1,10 +1,16 @@
 const User = require("../models/User");
 const { StatusCodes } = require("http-status-codes");
-const { attachCookiesToResponse } = require("../utils/jwt");
+const { createJWT } = require("../utils/jwt");
 const CustomError = require("../error");
 
 const showCurrentUser = async (req, res) => {
-  res.status(StatusCodes.OK).json({ user: req.user });
+  const user = await User.findOne({ _id: req.user.userId }).select("-password");
+  if (!user) {
+    throw new CustomError.UnauthenticatedError(
+      "Invalid User, please login again"
+    );
+  }
+  res.status(StatusCodes.OK).json({ name: user.name, email: user.email });
 };
 
 const updateUser = async (req, res) => {
@@ -15,11 +21,9 @@ const updateUser = async (req, res) => {
     runValidators: true,
   });
 
-  const userToken = { userId: user._id, name: user.name };
+  const token = createJWT(user);
 
-  attachCookiesToResponse({ res, userToken });
-
-  res.status(StatusCodes.OK).json({ userToken });
+  res.status(StatusCodes.OK).json({ user: { name: user.name }, token });
 };
 
 const updatePassword = async (req, res) => {

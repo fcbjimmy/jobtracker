@@ -1,7 +1,7 @@
 const User = require("../models/User");
 const { StatusCodes } = require("http-status-codes");
 const CustomError = require("../error");
-const { attachCookiesToResponse } = require("../utils/jwt");
+const { createJWT } = require("../utils/jwt");
 
 const register = async (req, res) => {
   const { name, password, email } = req.body;
@@ -14,11 +14,9 @@ const register = async (req, res) => {
 
   const user = await User.create({ name, password, email });
 
-  const userToken = { userId: user._id, email: user.email, name: user.name };
+  const token = createJWT(user);
 
-  attachCookiesToResponse({ res, userToken });
-
-  res.status(StatusCodes.CREATED).json({ userToken });
+  res.status(StatusCodes.CREATED).json({ user: { name: user.name }, token });
 };
 
 const login = async (req, res) => {
@@ -39,18 +37,18 @@ const login = async (req, res) => {
     throw new CustomError.UnauthenticatedError("Password does not match");
   }
 
-  const userToken = { userId: user._id, email: user.email, name: user.name };
+  const token = createJWT(user);
 
-  attachCookiesToResponse({ res, userToken });
-
-  res.status(StatusCodes.OK).json({ userToken, isLogged: true });
+  res
+    .status(StatusCodes.OK)
+    .json({ user: { name: user.name, email: user.email }, token });
 };
 
 const logout = async (req, res) => {
   res
     .clearCookie("token")
     .status(StatusCodes.OK)
-    .json({ message: "User successfully logged out", isLogged: false });
+    .json({ message: "User successfully logged out" });
 };
 
 module.exports = { register, login, logout };
