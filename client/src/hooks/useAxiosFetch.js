@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 
 const useAxiosFetch = () => {
   const [response, setResponse] = useState([]);
-  const [error, setError] = useState("");
+  const [error, setError] = useState({});
   const [loading, setLoading] = useState(false); //different!
   const [controller, setController] = useState();
 
@@ -17,20 +17,17 @@ const useAxiosFetch = () => {
         ...requestConfig,
         signal: ctrl.signal,
       });
-      console.log(res);
-      setResponse(res.data);
+      setResponse(res);
     } catch (err) {
-      console.log(err.message);
-      setError(err.message);
+      console.log(err);
+
+      setError(err);
     } finally {
       setLoading(false);
     }
   };
 
   useEffect(() => {
-    console.log(controller);
-
-    // useEffect cleanup function
     return () => controller && controller.abort();
   }, [controller]);
 

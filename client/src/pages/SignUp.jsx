@@ -1,29 +1,16 @@
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
-import axios from "axios";
-
-const schema = yup.object().shape({
-  name: yup
-    .string()
-    .min(4, "Name must be at least 4 characters long")
-    .max(32)
-    .required(),
-  email: yup
-    .string()
-    .email("Please enter a valid email!")
-    .required("Email is required!"),
-  password: yup
-    .string()
-    .min(5, "Password must be longer than 5 characters!")
-    .required("Password is required!"),
-  confirmPassword: yup
-    .string()
-    .required("Confirm Password is required!")
-    .oneOf([yup.ref("password"), null], "Passwords must match!"),
-});
+import axios from "../APIs/endpoint";
+import useAxiosFetch from "../hooks/useAxiosFetch";
+import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
+import { schema } from "../models/signup";
 
 const SignUp = () => {
+  const [response, error, loading, axiosFetch] = useAxiosFetch();
+  let navigate = useNavigate();
+
   const {
     register,
     formState: { errors },
@@ -32,20 +19,48 @@ const SignUp = () => {
   } = useForm({ resolver: yupResolver(schema) });
 
   const onSubmitHandler = async (data) => {
-    // console.log(JSON.stringify(data));
     const { confirmPassword, name, email, password } = data;
-    try {
-      const response = await axios.post("/api/v1/auth/register", {
+
+    axiosFetch({
+      axiosInstance: axios,
+      method: "post",
+      url: "/auth/register",
+      requestConfig: {
         name,
         email,
         password,
-      });
-      console.log(response);
-    } catch (error) {
-      console.log(error);
-    }
-    reset();
+      },
+    });
   };
+
+  if (error?.response?.status === 400) {
+    toast.error(`${error?.response?.data}`, { position: "top-center" });
+  }
+
+  if (response?.status === 201) {
+    toast.success("User created", { position: "top-center" });
+    navigate("/dashboard");
+    reset();
+  }
+
+  // console.log(error?.response?.data);
+
+  // const onSubmitHandler = async (data) => {
+  //   // console.log(JSON.stringify(data));
+  //   const { confirmPassword, name, email, password } = data;
+  //   try {
+  //     const response = await axios.post("/auth/register", {
+  //       name,
+  //       email,
+  //       password,
+  //     });
+  //     console.log(response);
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  //   reset();
+  // };
+
   return (
     <>
       <h1>Sign Up</h1>
@@ -77,7 +92,9 @@ const SignUp = () => {
           id="ConfirmPassword"
           placeholder="Confirm Password"
         />
-        <button type="submit">Sign Up</button>
+        <button disabled={loading} type="submit">
+          Sign Up
+        </button>
       </form>
     </>
   );

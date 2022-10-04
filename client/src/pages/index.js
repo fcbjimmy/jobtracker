@@ -1,5 +1,5 @@
-import Login from "./LogIn";
-import SignUp from "./SignUp";
+import Login from "./Login";
+import SignUp from "./Signup";
 import Dashboard from "./Dashboard";
-
-export { Login, SignUp, Dashboard };
+import CreateJob from "./CreateJob";
+export { Login, SignUp, Dashboard, CreateJob };

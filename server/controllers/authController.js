@@ -43,14 +43,14 @@ const login = async (req, res) => {
 
   attachCookiesToResponse({ res, userToken });
 
-  res.status(StatusCodes.OK).json({ userToken });
+  res.status(StatusCodes.OK).json({ userToken, isLogged: true });
 };
 
 const logout = async (req, res) => {
   res
     .clearCookie("token")
     .status(StatusCodes.OK)
-    .json({ message: "User successfully logged out" });
+    .json({ message: "User successfully logged out", isLogged: false });
 };
 
 module.exports = { register, login, logout };
