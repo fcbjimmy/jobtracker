@@ -1,16 +1,17 @@
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
-import axios from "../APIs/endpoint";
-import useAxiosFetch from "../hooks/useAxiosFetch";
-import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import { schema } from "../models/signup";
+import axios from "axios";
+import { useEffect, useState } from "react";
+import { useAuthContext } from "../hooks/useAuthContext";
+import { toast } from "react-toastify";
 
 const SignUp = () => {
-  const [response, error, loading, axiosFetch] = useAxiosFetch();
-  let navigate = useNavigate();
+  const { user, registerUser, isLoading } = useAuthContext();
 
+  let navigate = useNavigate();
   const {
     register,
     formState: { errors },
@@ -20,28 +21,15 @@ const SignUp = () => {
 
   const onSubmitHandler = async (data) => {
     const { confirmPassword, name, email, password } = data;
-
-    axiosFetch({
-      axiosInstance: axios,
-      method: "post",
-      url: "/auth/register",
-      requestConfig: {
-        name,
-        email,
-        password,
-      },
-    });
+    registerUser({ name, email, password });
   };
 
-  if (error?.response?.status === 400) {
-    toast.error(`${error?.response?.data}`, { position: "top-center" });
-  }
-
-  if (response?.status === 201) {
-    toast.success("User created", { position: "top-center" });
-    navigate("/dashboard");
-    reset();
-  }
+  useEffect(() => {
+    if (user) {
+      reset();
+      navigate("/dashboard");
+    }
+  }, [user]);
 
   // console.log(error?.response?.data);
 
@@ -92,7 +80,7 @@ const SignUp = () => {
           id="ConfirmPassword"
           placeholder="Confirm Password"
         />
-        <button disabled={loading} type="submit">
+        <button disabled={isLoading} type="submit">
           Sign Up
         </button>
       </form>

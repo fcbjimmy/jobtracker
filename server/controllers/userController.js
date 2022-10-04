@@ -28,7 +28,6 @@ const updateUser = async (req, res) => {
 
 const updatePassword = async (req, res) => {
   const { oldPassword, newPassword } = req.body;
-  console.log(req.body);
 
   if (!oldPassword || !newPassword) {
     throw new CustomError.BadRequestError("Please provide both values");
