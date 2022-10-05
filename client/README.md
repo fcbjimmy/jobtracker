@@ -3,11 +3,10 @@
 - Register ✅
 - Login ✅
 - Logout ✅
-- update Auth state when user is logged in.
-- dashboard information should use information from the Auth state
-- update Auth state when user is registered and navigate to dashboard
-- when loading app, check if there is cookie by sending a request to the server
-- Check if user is logged in. Check if there is cookie, what if cookie is expired?
+- update Auth state when user is logged in. ✅
+- dashboard information should use information from the Auth state ✅
+- update Auth state when user is registered and navigate to dashboard ✅
+- when loading app, check if there is token in localStorage ✅
 - Protected Routes
 
 # resources

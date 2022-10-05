@@ -5,50 +5,38 @@ import { useNavigate } from "react-router-dom";
 import { useAuthContext } from "../hooks/useAuthContext";
 
 const Dashboard = () => {
-  const { user, dispatch, logoutUser } = useAuthContext();
+  const { user, logoutUser, allJobs, jobs, isLoading } = useAuthContext();
   let navigate = useNavigate();
 
   useEffect(() => {
+    if (user) {
+      allJobs();
+    }
+
     if (user === null) {
       navigate("/");
     }
   }, [user]);
 
-  // const handleLogout = async () => {
-  //   axiosFetch({
-  //     axiosInstance: axios,
-  //     method: "get",
-  //     url: "/auth/logout",
-  //   });
-  // };
-
-  // console.log(response);
-
-  // if (response?.data?.isLogged === false) {
-  //   toast.success(`${response?.data?.message}`, { position: "top-center" });
-  //   navigate("/");
-  // }
-
-  // const handleLogout = async () => {
-  //   try {
-  //     const response = await axios.get("auth/logout", {
-  //       withCredentials: true,
-  //     });
-  //     console.log(response);
-  //     if (response?.data?.isLogged === false) {
-  //       toast.success(`${response?.data?.message}`, { position: "top-center" });
-  //       navigate("/");
-  //     }
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // };
+  console.log("testing", jobs);
 
   return (
     <>
       <div>Dashboard</div>
       <h1>Welcome {user?.name}</h1>
       <h2>Email: {user?.email}</h2>
+      {!isLoading &&
+        user &&
+        jobs.map((job, index) => {
+          return (
+            <div key={index}>
+              <h1>{index}</h1>
+              <h1>Company: {job.company}</h1>
+              <p>Position: {job.position}</p>
+              <p>Status: {job.status}</p>
+            </div>
+          );
+        })}
       <button onClick={logoutUser}>Log out</button>
       <h2 onClick={() => navigate("/createjob")}>Create Job</h2>
     </>

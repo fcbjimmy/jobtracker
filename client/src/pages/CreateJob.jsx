@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
+import { useAuthContext } from "../hooks/useAuthContext";
 
 const schema = yup.object().shape({
   company: yup.string().required("Company is required!"),
@@ -14,7 +15,6 @@ const schema = yup.object().shape({
 });
 
 const CreateJob = () => {
-  const [data, error, loading, axiosFetch] = useAxiosFetch();
   let navigate = useNavigate();
   const {
     register,
@@ -22,9 +22,11 @@ const CreateJob = () => {
     formState: { errors },
     reset,
   } = useForm({ resolver: yupResolver(schema) });
+  const { user, dispatch, createJob, isLoading } = useAuthContext();
 
   const onSubmitHandler = async (data) => {
-    console.log(data);
+    createJob({ data });
+    reset();
   };
 
   return (
@@ -48,14 +50,14 @@ const CreateJob = () => {
           id="position"
         />
         <p>{errors.date?.message}</p>
-        <label htmlFor="date">date</label>
+        <label htmlFor="date">Date</label>
         <input
           {...register("date")}
           type="date"
           min={new Date().toISOString().slice(0, 10)}
           id="date"
         />
-        <label htmlFor="status">Select function</label>
+        <label htmlFor="status">Status</label>
         <select
           name="status"
           {...register("Status", {
@@ -67,7 +69,9 @@ const CreateJob = () => {
           <option value="Interview">Interview</option>
           <option value="Declined">Declined</option>
         </select>
-        <button type="submit">submit</button>
+        <button disabled={isLoading} type="submit">
+          submit
+        </button>
       </form>
     </>
   );

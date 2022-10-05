@@ -1,7 +1,7 @@
-import { createContext, useReducer } from "react";
+import { createContext, useEffect, useReducer } from "react";
 import { toast } from "react-toastify";
 import axios from "axios";
-import { authReducer } from "./authReducer";
+import { reducer } from "./reducer";
 
 export const AuthContext = createContext();
 
@@ -9,12 +9,21 @@ const token = localStorage.getItem("token");
 const user = localStorage.getItem("user");
 
 export const AuthContextProvider = ({ children }) => {
-  const [state, dispatch] = useReducer(authReducer, {
+  const [state, dispatch] = useReducer(reducer, {
     user: user ? JSON.parse(user) : null,
     isLoading: false,
-    token: token,
+    token: token ? token : null,
+    jobs: [],
   });
+
   console.log("AuthContext state: ", state);
+
+  const authFetch = axios.create({
+    baseURL: "/api/v1",
+    headers: {
+      Authorization: `Bearer ${state?.token}`,
+    },
+  });
 
   const setUserToLocalStorage = ({ user, token }) => {
     localStorage.setItem("user", JSON.stringify(user));
@@ -29,7 +38,7 @@ export const AuthContextProvider = ({ children }) => {
   const registerUser = async ({ name, email, password }) => {
     try {
       dispatch({ type: "SETUP_USER_BEGIN" });
-      const { data } = await axios.post("/api/v1/auth/register", {
+      const { data } = await authFetch.post("/auth/register", {
         name,
         email,
         password,
@@ -53,12 +62,12 @@ export const AuthContextProvider = ({ children }) => {
   const loginUser = async ({ email, password }) => {
     try {
       dispatch({ type: "SETUP_USER_BEGIN" });
-      const { data } = await axios.post("/api/v1/auth/login", {
+      const { data } = await authFetch.post("/auth/login", {
         email,
         password,
       });
-      console.log(data);
       const { token, user } = data;
+      console.log(data);
       dispatch({
         type: "SETUP_USER_SUCCESS",
         payload: { name: user.name, email: user.email, token },
@@ -74,18 +83,53 @@ export const AuthContextProvider = ({ children }) => {
     }
   };
 
-  const logoutUser = async () => {
+  const logoutUser = () => {
     dispatch({
       type: "LOGOUT",
     });
     removeUserFromLocalStorage();
     toast.success("User logged out", { position: "top-center" });
-    console.log("logout");
+  };
+
+  const allJobs = async () => {
+    try {
+      dispatch({ type: "SETUP_JOB_BEGIN" });
+      const { data } = await authFetch.get("/jobs");
+      const { jobs } = data;
+      dispatch({ type: "GET_JOBS", payload: jobs });
+    } catch (error) {
+      console.log(error);
+      toast.error(`${error.response.data}`, { position: "top-center" });
+    }
+  };
+
+  const createJob = async ({ data }) => {
+    console.log(data);
+    try {
+      dispatch({ type: "SETUP_JOB_BEGIN" });
+      const { data: dataReceived } = await authFetch.post("/jobs", { ...data });
+      dispatch({ type: "GET_JOBS" });
+      toast.success(`${dataReceived.msg}`, { position: "top-center" });
+    } catch (error) {
+      console.log(error);
+      dispatch({
+        type: "SETUP_USER_ERROR",
+      });
+    }
   };
 
   return (
     <AuthContext.Provider
-      value={{ ...state, dispatch, registerUser, loginUser, logoutUser }}
+      value={{
+        ...state,
+        dispatch,
+        registerUser,
+        loginUser,
+        logoutUser,
+        createJob,
+        allJobs,
+        authFetch,
+      }}
     >
       {children}
     </AuthContext.Provider>

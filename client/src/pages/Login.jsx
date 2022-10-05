@@ -23,7 +23,9 @@ const Login = () => {
   useEffect(() => {
     if (user) {
       reset();
-      navigate("/dashboard");
+      setTimeout(() => {
+        navigate("/dashboard");
+      }, 3000);
     }
   }, [user]);
 
