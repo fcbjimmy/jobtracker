@@ -23,7 +23,13 @@ const updateUser = async (req, res) => {
 
   const token = createJWT(user);
 
-  res.status(StatusCodes.OK).json({ user: { name: user.name }, token });
+  res
+    .status(StatusCodes.OK)
+    .json({
+      user: { name: user.name, email: user.email },
+      token,
+      msg: "User credentials edited",
+    });
 };
 
 const updatePassword = async (req, res) => {

@@ -7,7 +7,16 @@
 - dashboard information should use information from the Auth state ✅
 - update Auth state when user is registered and navigate to dashboard ✅
 - when loading app, check if there is token in localStorage ✅
-- Protected Routes
+- Protected Routes ✅
+- Create Job page ✅
+- Edit Job page ✅
+- Delete Job ✅
+- Edit user page
+
+  # Improvements
+
+- refactorize some repeating code (e.g toast)
+- persist the state when refreshing from edit page
 
 # resources
 

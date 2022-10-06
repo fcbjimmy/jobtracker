@@ -1,32 +1,37 @@
-import { useState, useEffect } from "react";
-import { toast } from "react-toastify";
-import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { useParams } from "react-router-dom";
 import { useAuthContext } from "../hooks/useAuthContext";
-import { schema } from "../models/createJob";
+import { schema } from "../models/editjob";
 
-const CreateJob = () => {
-  let navigate = useNavigate();
+const EditJob = () => {
+  const { user, jobs, isLoading, allJobs, editSingleJob } = useAuthContext();
+  const { id } = useParams();
+
   const {
     register,
     handleSubmit,
     formState: { errors },
-    reset,
   } = useForm({
     resolver: yupResolver(schema),
+    defaultValues: {
+      company: jobs ? `${jobs[id]?.company}` : "",
+      position: jobs ? `${jobs[id]?.position}` : "",
+      date: jobs ? `${jobs[id]?.date.split("T")[0]}` : "",
+      status: jobs ? `${jobs[id]?.status}` : "",
+    },
   });
 
-  const { user, dispatch, createJob, isLoading } = useAuthContext();
+  const jobId = jobs ? jobs[id]?._id : null;
 
-  const onSubmitHandler = async (data) => {
-    createJob({ data });
-    reset();
+  console.log(jobs);
+  const onSubmitHandler = (data) => {
+    editSingleJob({ data, jobId, id });
   };
 
   return (
     <>
-      <h1>Create Job</h1>
+      <h1>Edit Job</h1>
       <form onSubmit={handleSubmit(onSubmitHandler)}>
         <p>{errors.company?.message}</p>
         <label htmlFor="company">Company</label>
@@ -55,11 +60,10 @@ const CreateJob = () => {
         <label htmlFor="status">Status</label>
         <select
           name="status"
-          {...register("Status", {
+          {...register("status", {
             required: "select one option",
           })}
         >
-          <option value="Pending" />
           <option value="Pending">Pending</option>
           <option value="Interview">Interview</option>
           <option value="Declined">Declined</option>
@@ -72,4 +76,4 @@ const CreateJob = () => {
   );
 };
 
-export default CreateJob;
+export default EditJob;

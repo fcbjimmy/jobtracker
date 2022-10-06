@@ -1,5 +1,12 @@
 import "./App.css";
-import { SignUp, Login, Dashboard, CreateJob } from "./pages";
+import {
+  SignUp,
+  Login,
+  Dashboard,
+  CreateJob,
+  EditJob,
+  EditUser,
+} from "./pages";
 import { Routes, Route } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -24,6 +31,14 @@ function App() {
         <Route
           path="/createjob"
           element={user ? <CreateJob /> : <Navigate to="/" />}
+        />
+        <Route
+          path="/editjob/:id"
+          element={user ? <EditJob /> : <Navigate to="/" />}
+        />
+        <Route
+          path="/edituser"
+          element={user ? <EditUser /> : <Navigate to="/" />}
         />
       </Routes>
     </>

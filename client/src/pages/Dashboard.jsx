@@ -1,11 +1,11 @@
 import { useEffect } from "react";
-import axios from "../APIs/endpoint";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import { useAuthContext } from "../hooks/useAuthContext";
 
 const Dashboard = () => {
-  const { user, logoutUser, allJobs, jobs, isLoading } = useAuthContext();
+  const { user, logoutUser, allJobs, jobs, isLoading, deleteSingleJob } =
+    useAuthContext();
   let navigate = useNavigate();
 
   useEffect(() => {
@@ -28,15 +28,21 @@ const Dashboard = () => {
       {!isLoading &&
         user &&
         jobs.map((job, index) => {
+          const { _id: jobId } = job;
+          console.log(jobId);
           return (
             <div key={index}>
               <h1>{index}</h1>
               <h1>Company: {job.company}</h1>
               <p>Position: {job.position}</p>
               <p>Status: {job.status}</p>
+              <div onClick={() => navigate(`/editjob/${index}`)}>Edit</div>
+
+              <div onClick={() => deleteSingleJob({ jobId })}>Delete</div>
             </div>
           );
         })}
+      {jobs.length === 0 && <div>No JOBS</div>}
       <button onClick={logoutUser}>Log out</button>
       <h2 onClick={() => navigate("/createjob")}>Create Job</h2>
     </>
