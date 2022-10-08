@@ -1,0 +1,142 @@
+@use '../../styles/variables' as mixin;
+
+.navbar {
+  position: relative;
+  position: sticky;
+  height: map-get(mixin.$size, 'nav-height');
+  background-color: map-get(mixin.$colors, 'nav');
+  width: 100%;
+  border-bottom: 1px solid map-get(mixin.$colors, 'navborder');
+}
+
+.logo {
+  font-size: 1.4rem;
+  font-weight: bold;
+  color: map-get(mixin.$colors, 'main');
+  border: solid map-get(mixin.$colors, 'main') 0.2rem;
+  border-radius: 0.2rem;
+  padding: 0.2rem;
+  max-width: 9rem;
+  position: absolute;
+  top: 50%;
+  left: 15%;
+  transform: translate(-50%, -50%);
+}
+
+.navcontent {
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  max-width: 8rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.ulist {
+  list-style-type: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.list {
+  color: map-get(mixin.$colors, 'nav-font');
+  margin-top: 0.5rem;
+}
+
+.list:hover {
+  color: map-get(mixin.$colors, 'main');
+}
+
+a:link {
+  text-decoration: none;
+}
+
+.activeStyle .list {
+  color: map-get(mixin.$colors, 'main');
+}
+
+.hidden {
+  display: none;
+}
+
+.menu {
+  font-size: 2rem;
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  left: 92%;
+  transform: translate(-50%, -50%);
+}
+
+.menu:active {
+  transition: 0.05s;
+  transform: translate(-50%, -40%);
+}
+
+@include mixin.largerthanphone() {
+  .navbar {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .navcontent {
+    margin: 0;
+    min-width: 20rem;
+    position: absolute;
+    top: 50%;
+    left: 83%;
+    transform: translate(-50%, -50%);
+  }
+
+  .ulist {
+    list-style-type: none;
+    flex-direction: row;
+    min-width: 10rem;
+  }
+
+  .list {
+    margin-top: 0.5rem;
+    margin-right: 0.8rem;
+  }
+
+  a:link {
+    text-decoration: none;
+  }
+
+  .menu {
+    display: none;
+  }
+}
+
+//
+// }
+// @media only screen and (min-width: 768px) {
+//   .logo {
+//     color: green;
+//   }
+
+//   .navcontent {
+//     background-color: red;
+//     ul {
+//       list-style-type: none;
+//       display: none;
+//       flex-direction: row;
+
+//       li {
+//         color: black;
+//         margin-top: 0.5rem;
+//         border: 1px solid yellow;
+//       }
+
+//       a:link {
+//         text-decoration: none;
+//       }
+//     }
+//   }
+
+//   .menu {
+//     display: none;
+//   }
+// }

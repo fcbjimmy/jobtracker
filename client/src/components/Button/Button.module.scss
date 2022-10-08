@@ -1,0 +1,23 @@
+@use '../../styles/variables' as mixin;
+
+.button {
+  font-size: 1rem;
+  padding: 0.5rem;
+  background-color: map-get(mixin.$colors, 'main');
+  color: map-get(mixin.$colors, 'white');
+  width: 100%;
+  font-weight: bold;
+  border: none;
+  border-radius: 2px;
+}
+
+.button:hover {
+  background-color: darken(map-get(mixin.$colors, 'main'), 10%);
+  transition: 0.3s ease-in-out all;
+}
+
+.button:active {
+  background-color: darken(map-get(mixin.$colors, 'main'), 10%);
+  transition: 0.05s;
+  transform: translateY(1px);
+}

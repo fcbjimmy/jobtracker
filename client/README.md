@@ -27,3 +27,13 @@
   https://stackoverflow.com/questions/70374005/invalid-options-object-dev-server-has-been-initialized-using-an-options-object/70491173#70491173
 
   https://exerror.com/invalid-options-object-dev-server-has-been-initialized-using-an-options-object-that-does-not-match-the-api-schema/#h-how-to-solve-invalid-options-object-dev-server-has-been-initialized-using-an-options-object-that-does-not-match-the-api-schema-error
+
+- check active link react router dom
+
+https://stackoverflow.com/questions/70569816/highlight-active-link-in-new-react-router-dom-v6
+
+- Lottie animation
+  https://dev.to/franciscomendes10866/add-animations-to-your-react-app-using-lottie-1ph2
+
+- Lottie animation duplicated
+  https://stackoverflow.com/questions/72031767/use-effect-is-repeating-lottie-animation

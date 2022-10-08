@@ -1,0 +1,59 @@
+@use '../../styles/variables' as mixin;
+
+@mixin theme() {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.section {
+  @include theme;
+  max-width: map-get(mixin.$size, 'max-width');
+  min-height: calc(100vh - map-get(mixin.$size, 'nav-height'));
+}
+
+.description {
+  @include theme;
+  min-height: 15rem;
+}
+
+.description h1 {
+  font-size: 2.6rem;
+  font-weight: bold;
+  min-height: 7rem;
+  text-align: center;
+  margin-bottom: 1rem;
+  color: map-get(mixin.$colors, 'hero-font');
+}
+
+.description p {
+  text-align: center;
+  margin-bottom: 1rem;
+  color: map-get(mixin.$colors, 'hero-font');
+  font-weight: 700;
+  margin: 0 0 2rem 0;
+}
+
+.animation {
+  height: 550px;
+  width: 500px;
+}
+
+@include mixin.largerthanphone() {
+  .section {
+    flex-direction: row;
+    align-items: flex-start;
+  }
+  .description {
+    min-height: 30rem;
+    max-width: 25rem;
+    align-items: flex-start;
+  }
+  .description h1 {
+    text-align: left;
+  }
+  .description p {
+    text-align: left;
+  }
+}

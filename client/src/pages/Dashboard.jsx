@@ -1,11 +1,10 @@
-import { useEffect } from "react";
-import { toast } from "react-toastify";
-import { useNavigate } from "react-router-dom";
-import { useAuthContext } from "../hooks/useAuthContext";
+import { useEffect } from 'react';
+import { toast } from 'react-toastify';
+import { useNavigate } from 'react-router-dom';
+import { useAuthContext } from '../hooks/useAuthContext';
 
 const Dashboard = () => {
-  const { user, logoutUser, allJobs, jobs, isLoading, deleteSingleJob } =
-    useAuthContext();
+  const { user, logoutUser, allJobs, jobs, isLoading, deleteSingleJob } = useAuthContext();
   let navigate = useNavigate();
 
   useEffect(() => {
@@ -14,11 +13,11 @@ const Dashboard = () => {
     }
 
     if (user === null) {
-      navigate("/");
+      navigate('/');
     }
   }, [user]);
 
-  console.log("testing", jobs);
+  console.log('testing', jobs);
 
   return (
     <>
@@ -44,7 +43,7 @@ const Dashboard = () => {
         })}
       {jobs.length === 0 && <div>No JOBS</div>}
       <button onClick={logoutUser}>Log out</button>
-      <h2 onClick={() => navigate("/createjob")}>Create Job</h2>
+      <h2 onClick={() => navigate('/createjob')}>Create Job</h2>
     </>
   );
 };

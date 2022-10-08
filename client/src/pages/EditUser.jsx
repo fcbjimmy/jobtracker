@@ -1,14 +1,11 @@
-import * as yup from "yup";
-import { useForm } from "react-hook-form";
-import { yupResolver } from "@hookform/resolvers/yup";
-import { useAuthContext } from "../hooks/useAuthContext";
+import * as yup from 'yup';
+import { useForm } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
+import { useAuthContext } from '../hooks/useAuthContext';
 
 export const schema = yup.object().shape({
-  email: yup
-    .string()
-    .email("Please enter a valid email!")
-    .required("Email is required!"),
-  name: yup.string().required("Name is required!"),
+  email: yup.string().email('Please enter a valid email!').required('Email is required!'),
+  name: yup.string().required('Name is required!'),
 });
 
 const EditUser = () => {
@@ -31,17 +28,12 @@ const EditUser = () => {
       <h1>Edit User</h1>
       <form onSubmit={handleSubmit(onSubmitHandler)}>
         <p>{errors.name?.message}</p>
-        <label htmlFor="name">Name</label>
-        <input {...register("name")} type="name" id="name" placeholder="Name" />
+        <label htmlFor='name'>Name</label>
+        <input {...register('name')} type='name' id='name' placeholder='Name' />
         <p>{errors.email?.message}</p>
-        <label htmlFor="email">Email</label>
-        <input
-          {...register("email")}
-          type="email"
-          placeholder="Email"
-          id="email"
-        />
-        <button disabled={isLoading} type="submit">
+        <label htmlFor='email'>Email</label>
+        <input {...register('email')} type='email' placeholder='Email' id='email' />
+        <button disabled={isLoading} type='submit'>
           Submit
         </button>
       </form>

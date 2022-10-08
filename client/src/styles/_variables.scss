@@ -1,0 +1,35 @@
+$colors: (
+  'black': #14161a,
+  'white': #ffffff,
+  'main': #28a5e9,
+  'font': #3d4852,
+  'nav': #fafafa,
+  'navborder': #fbfbfb,
+  'nav-font': #606f7b,
+  'hero-font': #111827,
+);
+
+//vh vw
+$size: (
+  'max-width': 100vw,
+  'nav-height': 8rem,
+);
+
+//media queries
+$breakpoints: (
+  'sm': 570px,
+  'md': 768px,
+  'l': 948px,
+);
+
+@mixin largerthanphone() {
+  @media screen and (min-width: map-get($breakpoints, 'md')) {
+    @content;
+  }
+}
+
+@mixin tableMedia() {
+  @media screen and (max-width: map-get($breakpoints, 'sm')) {
+    @content;
+  }
+}
