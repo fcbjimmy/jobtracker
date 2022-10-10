@@ -1,0 +1,88 @@
+@use '../../styles/variables' as mixin;
+
+.container {
+  display: flex;
+}
+
+.main {
+  width: 100%;
+  padding: 20px;
+}
+
+.sidebar {
+  background: map-get(mixin.$colors, 'nav');
+  color: map-get(mixin.$colors, 'main');
+  height: 100vh;
+  width: 200px;
+  transition: all 0.3s;
+}
+
+.topSection {
+  display: flex;
+  align-items: center;
+  padding: 20px 15px;
+}
+
+.logo {
+  font-size: 30px;
+}
+
+.bars {
+  display: flex;
+  font-size: 25px;
+  margin-left: 50px;
+}
+
+.link {
+  display: flex;
+  color: map-get(mixin.$colors, 'nav-font');
+  padding: 10px 15px;
+  gap: 15px;
+  transition: all 0.5s;
+}
+
+.link:hover {
+  background-color: skyblue;
+  color: #000;
+  transition: all 0.5s;
+}
+
+.activeStyle {
+  background-color: skyblue;
+  color: #000;
+  display: flex;
+  color: map-get(mixin.$colors, 'nav-font');
+  padding: 10px 15px;
+  gap: 15px;
+  transition: all 0.5s;
+}
+
+.text {
+  font-size: 16px;
+}
+
+.icon {
+  font-size: 22px;
+}
+
+// .navbar {
+//   border: 1px solid red;
+//   position: relative;
+//   position: sticky;
+//   height: map-get(mixin.$size, 'nav-height');
+//   background-color: map-get(mixin.$colors, 'nav');
+//   width: 20%;
+//   height: 100vh;
+//   border-bottom: 1px solid map-get(mixin.$colors, 'navborder');
+// }
+
+// .logo {
+//   font-size: 1.4rem;
+//   font-weight: bold;
+//   color: map-get(mixin.$colors, 'main');
+//   border: solid map-get(mixin.$colors, 'main') 0.2rem;
+//   border-radius: 0.2rem;
+//   padding: 0.2rem;
+//   max-width: 9rem;
+//   position: absolute;
+// }

@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { schema } from '../models/login';
 import { useAuthContext } from '../hooks/useAuthContext';
 import { Button } from '../components/';
@@ -35,16 +35,16 @@ const Login = () => {
     <>
       <section className={style.section}>
         <div className={style.container}>
-          <h1>Log In</h1>
           <form onSubmit={handleSubmit(onSubmitHandler)}>
-            <ul classname={style.ulist}>
-              <li classname={style.items}>
-                <p>{errors.email?.message}</p>
+            <h1>Log In</h1>
+            <ul className={style.ulist}>
+              <li>
+                <p className={style.error}>{errors.email?.message}</p>
                 <label htmlFor='email'>Email</label>
                 <input {...register('email')} type='email' placeholder='email' id='email' />
               </li>
               <li>
-                <p>{errors.password?.message}</p>
+                <p className={style.error}>{errors.password?.message}</p>
                 <label htmlFor='password'>Password</label>
                 <input
                   {...register('password')}
@@ -57,6 +57,11 @@ const Login = () => {
                 <Button disabled={isLoading} type='submit'>
                   Log In
                 </Button>
+              </li>
+              <li>
+                <p className={style.paragraph}>
+                  Not a member? <Link to='/signup'>Sign up</Link>
+                </p>
               </li>
             </ul>
           </form>

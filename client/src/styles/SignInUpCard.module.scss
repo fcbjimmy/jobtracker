@@ -7,15 +7,16 @@
 }
 
 .container {
-  border: solid lighten(map-get(mixin.$colors, 'nav-font'), 50%) 2px;
-  border-radius: 0.5rem;
   width: 20rem;
-  height: 22rem;
   position: absolute;
   inset: 0;
   margin: 4rem auto;
 }
 
+.container form {
+  border: solid lighten(map-get(mixin.$colors, 'nav-font'), 50%) 2px;
+  border-radius: 0.5rem;
+}
 .container h1 {
   padding-top: 1.5rem;
   padding-left: 1rem;
@@ -32,7 +33,7 @@
 .container li {
   display: flex;
   flex-direction: column;
-  margin: 0.5rem 0;
+  margin: 0.3rem 0;
 }
 
 .container input {
@@ -42,6 +43,23 @@
   border: 2px solid lighten(map-get(mixin.$colors, 'nav-font'), 50%);
   margin: 8px 0;
   border-radius: 4px;
+}
+
+li .error {
+  font-size: 0.7rem;
+  color: red;
+}
+
+li .paragraph {
+  font-size: 0.9rem;
+}
+
+a {
+  color: map-get(mixin.$colors, 'main');
+}
+
+a:hover {
+  color: darken(map-get(mixin.$colors, 'main'), 10%);
 }
 
 .container input:focus {

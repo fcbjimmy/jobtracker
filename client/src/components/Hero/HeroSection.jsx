@@ -27,8 +27,8 @@ const HeroSection = () => {
           Track Your <br /> Job Applications
         </h1>
         <p>
-          App built using React, CSS and SASS in the front-end, while using Express and MongoDB in
-          the back-end.
+          App built using React, CSS and SASS in the front-end, <br />
+          while using Express and MongoDB in the back-end.
         </p>
         <span onClick={() => navigate('/login')}>
           <Button>Login/Signup</Button>

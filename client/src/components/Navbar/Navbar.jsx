@@ -4,10 +4,11 @@ import style from './Navbar.module.scss';
 import { FiMenu } from 'react-icons/fi';
 import { AiOutlineClose } from 'react-icons/ai';
 import useWindowSize from '../../hooks/useWindowSize';
+import { useAuthContext } from '../../hooks/useAuthContext';
 
 const Navbar = () => {
   const [showNav, setShowNav] = useState(true);
-
+  const { user, logoutUser } = useAuthContext();
   const width = useWindowSize();
 
   useEffect(() => {
@@ -28,18 +29,33 @@ const Navbar = () => {
           <a href='https://github.com/fcbjimmy/jobtracker' rel='noreferrer' target='_blank'>
             <li className={style.list}>Source Code</li>
           </a>
-          <NavLink
-            to='/signup'
-            className={({ isActive }) => (isActive ? style.activeStyle : undefined)}
-          >
-            <li className={style.list}>Sign Up</li>
-          </NavLink>
-          <NavLink
-            to='/login'
-            className={({ isActive }) => (isActive ? style.activeStyle : undefined)}
-          >
-            <li className={style.list}>Log in</li>
-          </NavLink>
+          {user ? (
+            <NavLink
+              to='/edituser'
+              className={({ isActive }) => (isActive ? style.activeStyle : undefined)}
+            >
+              <li className={style.list}>Profile</li>
+            </NavLink>
+          ) : (
+            <NavLink
+              to='/signup'
+              className={({ isActive }) => (isActive ? style.activeStyle : undefined)}
+            >
+              <li className={style.list}>Sign Up</li>
+            </NavLink>
+          )}
+          {user ? (
+            <li className={style.list} onClick={() => logoutUser()}>
+              Log out
+            </li>
+          ) : (
+            <NavLink
+              to='/login'
+              className={({ isActive }) => (isActive ? style.activeStyle : undefined)}
+            >
+              <li className={style.list}>Log in</li>
+            </NavLink>
+          )}
         </ul>
       </div>
       {!showNav ? (

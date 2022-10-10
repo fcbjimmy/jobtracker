@@ -15,35 +15,41 @@
 
 .description {
   @include theme;
+  align-items: flex-start;
   min-height: 15rem;
 }
 
 .description h1 {
-  font-size: 2.6rem;
+  font-size: 2rem;
   font-weight: bold;
   min-height: 7rem;
-  text-align: center;
-  margin-bottom: 1rem;
+  max-width: 19rem;
+  text-align: left;
+  margin-top: 1rem;
   color: map-get(mixin.$colors, 'hero-font');
 }
 
 .description p {
-  text-align: center;
+  font-size: 1rem;
+  text-align: left;
   margin-bottom: 1rem;
+  min-height: 5rem;
+  max-width: 19rem;
   color: map-get(mixin.$colors, 'hero-font');
   font-weight: 700;
   margin: 0 0 2rem 0;
 }
 
 .animation {
-  height: 550px;
-  width: 500px;
+  height: 400px;
+  width: 375px;
 }
 
 @include mixin.largerthanphone() {
   .section {
     flex-direction: row;
     align-items: flex-start;
+    justify-content: space-evenly;
   }
   .description {
     min-height: 30rem;
@@ -51,9 +57,16 @@
     align-items: flex-start;
   }
   .description h1 {
+    max-width: 30rem;
+    font-size: 2.5rem;
     text-align: left;
   }
   .description p {
+    font-size: 1rem;
     text-align: left;
+  }
+  .animation {
+    height: 550px;
+    width: 500px;
   }
 }

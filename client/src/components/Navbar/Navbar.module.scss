@@ -19,7 +19,7 @@
   max-width: 9rem;
   position: absolute;
   top: 50%;
-  left: 15%;
+  left: 20%;
   transform: translate(-50%, -50%);
 }
 
@@ -47,6 +47,7 @@
 
 .list:hover {
   color: map-get(mixin.$colors, 'main');
+  cursor: pointer;
 }
 
 a:link {
@@ -86,7 +87,7 @@ a:link {
     min-width: 20rem;
     position: absolute;
     top: 50%;
-    left: 83%;
+    left: 75%;
     transform: translate(-50%, -50%);
   }
 
