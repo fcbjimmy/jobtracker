@@ -1,0 +1,116 @@
+@use '../../styles//variables' as mixin;
+
+.grid {
+  width: 100%;
+  display: grid;
+  justify-content: center;
+}
+
+.container {
+  background-color: map-get(mixin.$colors, 'nav');
+  color: map-get(mixin.$colors, 'black');
+  border: 1px solid map-get(mixin.$colors, 'line');
+  border-radius: 0.6rem;
+  margin: 1rem 0;
+  max-width: 17.4rem;
+  min-height: 11rem;
+  display: flex;
+  flex-direction: column;
+  transition: all 0.5s;
+}
+
+.content {
+  padding: 0.7rem 0.8rem 0rem 0.8rem;
+  border-radius: 0.6rem;
+  background-color: map-get(mixin.$colors, 'white');
+  flex: 2;
+  transition: all 0.5s;
+}
+
+.job {
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+.status {
+  margin-bottom: 0.5rem;
+}
+
+.date {
+  display: flex;
+  align-items: center;
+  font-weight: bold;
+  margin-bottom: 0rem;
+}
+
+i {
+  font-size: 1.5rem;
+  margin-right: 0.5rem;
+}
+
+.bottom {
+  border: 1px solid map-get(mixin.$colors, 'line');
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.edit {
+  height: 1.9rem;
+  padding: 0.3rem 0.5rem;
+  background-color: map-get(mixin.$colors, 'main');
+  border: 1px solid map-get(mixin.$colors, 'main');
+  border-radius: 0.2rem;
+  cursor: pointer;
+  margin-top: 0.5rem;
+  margin-right: 0.8rem;
+  color: map-get(mixin.$colors, 'white');
+  transition: all 0.5s;
+}
+
+.delete {
+  height: 1.9rem;
+  padding: 0.3rem 0.5rem;
+  background-color: map-get(mixin.$colors, 'red');
+  border: 1px solid map-get(mixin.$colors, 'red');
+  border-radius: 0.2rem;
+  cursor: pointer;
+  margin-top: 0.5rem;
+  margin-right: 0.8rem;
+  color: map-get(mixin.$colors, 'white');
+  transition: all 0.5s;
+}
+
+@include mixin.tabletMedia() {
+  .grid {
+    grid-template-columns: repeat(2, 20rem);
+  }
+}
+
+@include mixin.largerthanphone() {
+  .container {
+    max-width: 19rem;
+    min-height: 13rem;
+    transition: all 0.5s;
+  }
+  .content {
+    padding: 1rem;
+    transition: all 0.5s;
+  }
+  .edit {
+    margin-top: 0.8rem;
+    margin-right: 1rem;
+    transition: all 0.5s;
+  }
+  .delete {
+    margin-top: 0.8rem;
+    margin-right: 1rem;
+    transition: all 0.5s;
+  }
+}
+
+@include mixin.wideScreen() {
+  .grid {
+    grid-template-columns: repeat(3, 20rem);
+  }
+}

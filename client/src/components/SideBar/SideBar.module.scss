@@ -2,67 +2,76 @@
 
 .container {
   display: flex;
+  min-height: 100vh;
 }
 
 .main {
   width: 100%;
-  padding: 20px;
+  padding: 1.5rem;
 }
 
 .sidebar {
   background: map-get(mixin.$colors, 'nav');
   color: map-get(mixin.$colors, 'main');
-  height: 100vh;
-  width: 200px;
+  width: 12.5rem;
   transition: all 0.3s;
 }
 
 .topSection {
   display: flex;
   align-items: center;
-  padding: 20px 15px;
+  padding: 1.25rem 1rem;
 }
 
 .logo {
-  font-size: 30px;
+  font-size: 1rem;
+  font-weight: bold;
+  color: map-get(mixin.$colors, 'main');
+  border: solid map-get(mixin.$colors, 'main') 0.2rem;
+  border-radius: 0.2rem;
+  padding: 0.2rem;
+  width: 6.6rem;
 }
 
 .bars {
   display: flex;
-  font-size: 25px;
-  margin-left: 50px;
+  font-size: 1.6rem;
 }
 
 .link {
   display: flex;
   color: map-get(mixin.$colors, 'nav-font');
-  padding: 10px 15px;
-  gap: 15px;
+  padding: 0.65rem 0.95rem;
+  gap: 0.9rem;
   transition: all 0.5s;
 }
 
 .link:hover {
-  background-color: skyblue;
-  color: #000;
+  background-color: map-get(mixin.$colors, 'sky');
+  color: map-get(mixin.$colors, 'black');
   transition: all 0.5s;
 }
 
 .activeStyle {
-  background-color: skyblue;
-  color: #000;
+  background-color: map-get(mixin.$colors, 'sky');
+  color: map-get(mixin.$colors, 'black');
   display: flex;
   color: map-get(mixin.$colors, 'nav-font');
-  padding: 10px 15px;
-  gap: 15px;
+  padding: 0.65rem 0.95rem;
+  gap: 0.9rem;
   transition: all 0.5s;
 }
 
 .text {
-  font-size: 16px;
+  font-size: 1.1rem;
 }
 
 .icon {
-  font-size: 22px;
+  font-size: 1.4rem;
+}
+
+.right {
+  flex: 1;
 }
 
 // .navbar {

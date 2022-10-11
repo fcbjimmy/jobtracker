@@ -1,3 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
+
+$font-stack: (
+  'monserrat': 'Montserrat',
+  'sansserif': sans-serif,
+  'inter': 'Inter',
+);
+
 $colors: (
   'black': #14161a,
   'white': #ffffff,
@@ -7,6 +16,11 @@ $colors: (
   'navborder': #fbfbfb,
   'nav-font': #606f7b,
   'hero-font': #111827,
+  'sky': #87ceeb,
+  'line': #e5e7eb,
+  'green': #3cd070,
+  'red': #ff6347,
+  'gold': #f59e0c,
 );
 
 //vh vw
@@ -17,10 +31,18 @@ $size: (
 
 //media queries
 $breakpoints: (
-  'sm': 570px,
+  'sm': 670px,
   'md': 768px,
+  'test': 1000px,
   'l': 948px,
+  'xl': 1040px,
 );
+
+@mixin wideScreen() {
+  @media screen and (min-width: map-get($breakpoints, 'xl')) {
+    @content;
+  }
+}
 
 @mixin largerthanphone() {
   @media screen and (min-width: map-get($breakpoints, 'md')) {
@@ -28,8 +50,13 @@ $breakpoints: (
   }
 }
 
-@mixin tableMedia() {
-  @media screen and (max-width: map-get($breakpoints, 'sm')) {
+@mixin test() {
+  @media screen and (min-width: map-get($breakpoints, 'sm')) {
+    @content;
+  }
+}
+@mixin tabletMedia() {
+  @media screen and (min-width: map-get($breakpoints, 'md')) {
     @content;
   }
 }

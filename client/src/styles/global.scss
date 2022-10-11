@@ -1,11 +1,12 @@
 @use './variables' as mixin;
 @import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
-$font-stack: 'Montserrat', sans-serif;
+@import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
+
 *,
 *::after,
 *::before {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: $font-stack;
+  font-family: map-get(mixin.$font-stack, 'monserrat'), map-get(mixin.$colors, 'sansserif');
 }

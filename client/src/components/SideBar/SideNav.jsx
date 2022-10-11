@@ -1,12 +1,11 @@
-import { useEffect, useState } from 'react';
-import { NavLink } from 'react-router-dom';
+import { useState } from 'react';
+import { NavLink, Link } from 'react-router-dom';
 import style from './SideBar.module.scss';
 import { FaUserAlt } from 'react-icons/fa';
-import { AiOutlineClose } from 'react-icons/ai';
 import { MdDashboard, MdCreateNewFolder } from 'react-icons/md';
 import { FiLogOut, FiMenu } from 'react-icons/fi';
-import useWindowSize from '../../hooks/useWindowSize';
 import { useAuthContext } from '../../hooks/useAuthContext';
+import { Header } from '../index';
 
 const SideNav = ({ children }) => {
   const { user, logoutUser } = useAuthContext();
@@ -22,12 +21,14 @@ const SideNav = ({ children }) => {
     <>
       {user && (
         <div className={style.container}>
-          <div style={{ width: isOpen ? '300px' : '50px' }} className={style.sidebar}>
+          <div style={{ width: isOpen ? '15.75rem' : '3rem' }} className={style.sidebar}>
             <div className={style.topSection}>
-              <h1 style={{ display: isOpen ? 'block' : 'none' }} className={style.logo}>
-                Title
-              </h1>
-              <div style={{ marginLeft: isOpen ? '120px' : '0px' }} className={style.bars}>
+              <Link to='/dashboard'>
+                <h1 style={{ display: isOpen ? 'block' : 'none' }} className={style.logo}>
+                  Job Tracker
+                </h1>
+              </Link>
+              <div style={{ marginLeft: isOpen ? '5rem' : '0px' }} className={style.bars}>
                 <FiMenu onClick={toggle} />
               </div>
             </div>
@@ -54,7 +55,9 @@ const SideNav = ({ children }) => {
               </div>
             </NavLink>
           </div>
-          <main className={style.main}>{children}</main>
+          <div className={style.right}>
+            <Header /> <main className={style.main}>{children}</main>
+          </div>
         </div>
       )}
       {!user && <main>{children}</main>}

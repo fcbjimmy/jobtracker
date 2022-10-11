@@ -56,6 +56,7 @@ const EditJob = () => {
         >
           <option value='Pending'>Pending</option>
           <option value='Interview'>Interview</option>
+          <option value='Offer'>Offer</option>
           <option value='Declined'>Declined</option>
         </select>
         <button disabled={isLoading} type='submit'>

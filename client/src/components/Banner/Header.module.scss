@@ -1,0 +1,16 @@
+@use '../../styles/variables' as mixin;
+
+.head {
+  min-height: 4rem;
+  background-color: map-get(mixin.$colors, 'nav');
+  color: map-get(mixin.$colors, 'black');
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.header {
+  font-size: 1.2rem;
+  margin-right: 1.5rem;
+}

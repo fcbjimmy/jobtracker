@@ -1,8 +1,8 @@
 import { useEffect } from 'react';
-import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
+import { Summary } from '../components';
 import { useAuthContext } from '../hooks/useAuthContext';
-
+import { Jobs } from '../components';
 const Dashboard = () => {
   const { user, logoutUser, allJobs, jobs, isLoading, deleteSingleJob } = useAuthContext();
   let navigate = useNavigate();
@@ -21,12 +21,14 @@ const Dashboard = () => {
 
   return (
     <>
+      <Summary />
+      <Jobs />
       <div>Dashboard</div>
       <h1>Welcome {user?.name}</h1>
       <h2>Email: {user?.email}</h2>
       {!isLoading &&
         user &&
-        jobs.map((job, index) => {
+        jobs?.map((job, index) => {
           const { _id: jobId } = job;
           console.log(jobId);
           return (
@@ -41,7 +43,7 @@ const Dashboard = () => {
             </div>
           );
         })}
-      {jobs.length === 0 && <div>No JOBS</div>}
+      {jobs?.length === 0 && <div>No JOBS</div>}
       <button onClick={logoutUser}>Log out</button>
       <h2 onClick={() => navigate('/createjob')}>Create Job</h2>
     </>
