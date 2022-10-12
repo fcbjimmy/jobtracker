@@ -1,0 +1,61 @@
+@use '../../styles//variables' as mixin;
+
+.header {
+  background-color: map-get(mixin.$colors, 'nav');
+  color: map-get(mixin.$colors, 'black');
+  border: 1px solid map-get(mixin.$colors, 'line');
+  border-radius: 0.6rem;
+  margin: 1rem auto;
+}
+
+.header:hover {
+  box-shadow: 5px 5px 15px -4px #000000;
+  transition: all 0.5s;
+}
+
+.title {
+  padding: 1rem;
+  font-weight: bold;
+  border-bottom: 1px solid map-get(mixin.$colors, 'line');
+  display: flex;
+  justify-content: space-between;
+}
+
+.summary {
+  padding: 1rem;
+  background-color: map-get(mixin.$colors, 'white');
+  border-radius: 0.6rem;
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  font-size: 0.8rem;
+}
+
+// .offer {
+//   color: map-get(mixin.$colors, 'green');
+//   font-weight: bold;
+//   padding: 0.3rem;
+// }
+
+// .interview {
+//   color: map-get(mixin.$colors, 'main');
+//   font-weight: bold;
+//   padding: 0.3rem;
+// }
+
+// .decline {
+//   color: map-get(mixin.$colors, 'red');
+//   font-weight: bold;
+//   padding: 0.3rem;
+// }
+
+// .digit {
+//   color: map-get(mixin.$colors, 'black');
+//   padding: 0.3rem;
+// }
+
+// .pending {
+//   color: map-get(mixin.$colors, 'gold');
+//   font-weight: bold;
+//   padding: 0.3rem;
+// }

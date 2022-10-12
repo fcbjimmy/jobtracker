@@ -4,7 +4,7 @@ import { Summary } from '../components';
 import { useAuthContext } from '../hooks/useAuthContext';
 import { Jobs } from '../components';
 const Dashboard = () => {
-  const { user, logoutUser, allJobs, jobs, isLoading, deleteSingleJob } = useAuthContext();
+  const { user, allJobs, jobs, isLoading } = useAuthContext();
   let navigate = useNavigate();
 
   useEffect(() => {

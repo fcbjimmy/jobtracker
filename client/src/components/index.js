@@ -6,4 +6,5 @@ import SideNav from './SideBar/SideNav';
 import Header from './Banner/Header';
 import Summary from './Summary/Summary';
 import Jobs from './Jobs/Jobs';
-export { Navbar, HeroSection, SignInUpCard, Button, SideNav, Header, Summary, Jobs };
+import Container from './Container/Container';
+export { Navbar, HeroSection, SignInUpCard, Button, SideNav, Header, Summary, Jobs, Container };
