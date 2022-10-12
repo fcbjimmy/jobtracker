@@ -1,21 +1,23 @@
 import React from 'react';
 import { useAuthContext } from '../../hooks/useAuthContext';
 import style from './Jobs.module.scss';
-import { FcCalendar, FcBriefcase } from 'react-icons/fc';
+import { FcCalendar } from 'react-icons/fc';
+import { useNavigate } from 'react-router-dom';
 const Jobs = () => {
-  const { jobs } = useAuthContext();
+  const { jobs, deleteSingleJob } = useAuthContext();
+  let navigate = useNavigate();
 
   return (
     <div className={style.grid}>
       {jobs?.map((job, index) => {
-        console.log(job.date);
+        const { _id: jobId } = job;
         return (
           <div className={style.container}>
             <div className={style.content}>
               <p className={style.job}>
                 {job.position} at {job.company}
               </p>
-              <div className={style.status}>{job.status}</div>
+              <div className={style[`${job.status}`]}>{job.status}</div>
               <div className={style.date}>
                 <i>
                   <FcCalendar />
@@ -24,7 +26,12 @@ const Jobs = () => {
               </div>
             </div>
             <div className={style.bottom}>
-              <span className={style.edit}>Edit</span> <span className={style.delete}>Delete</span>
+              <span className={style.edit} onClick={() => navigate(`/editjob/${index}`)}>
+                Edit
+              </span>{' '}
+              <span className={style.delete} onClick={() => deleteSingleJob({ jobId })}>
+                Delete
+              </span>
             </div>
           </div>
         );

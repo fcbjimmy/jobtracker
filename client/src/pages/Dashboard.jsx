@@ -22,30 +22,8 @@ const Dashboard = () => {
   return (
     <>
       <Summary />
-      <Jobs />
-      <div>Dashboard</div>
-      <h1>Welcome {user?.name}</h1>
-      <h2>Email: {user?.email}</h2>
-      {!isLoading &&
-        user &&
-        jobs?.map((job, index) => {
-          const { _id: jobId } = job;
-          console.log(jobId);
-          return (
-            <div key={index}>
-              <h1>{index}</h1>
-              <h1>Company: {job.company}</h1>
-              <p>Position: {job.position}</p>
-              <p>Status: {job.status}</p>
-              <div onClick={() => navigate(`/editjob/${index}`)}>Edit</div>
-
-              <div onClick={() => deleteSingleJob({ jobId })}>Delete</div>
-            </div>
-          );
-        })}
+      {!isLoading && user && <Jobs />}
       {jobs?.length === 0 && <div>No JOBS</div>}
-      <button onClick={logoutUser}>Log out</button>
-      <h2 onClick={() => navigate('/createjob')}>Create Job</h2>
     </>
   );
 };

@@ -45,7 +45,7 @@ const CreateJob = () => {
         <label htmlFor='status'>Status</label>
         <select
           name='status'
-          {...register('Status', {
+          {...register('status', {
             required: 'select one option',
           })}
         >

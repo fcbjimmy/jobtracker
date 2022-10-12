@@ -1,9 +1,17 @@
 @use '../../styles//variables' as mixin;
 
+@mixin theme($theme) {
+  padding-top: 0.2rem;
+  padding-bottom: 0.5rem;
+  color: map-get(mixin.$colors, $theme);
+  font-weight: bold;
+}
+
 .grid {
   width: 100%;
   display: grid;
   justify-content: center;
+  gap: 2.5rem;
 }
 
 .container {
@@ -19,6 +27,11 @@
   transition: all 0.5s;
 }
 
+.container:hover {
+  box-shadow: 5px 5px 15px -4px #000000;
+  transition: all 0.5s;
+}
+
 .content {
   padding: 0.7rem 0.8rem 0rem 0.8rem;
   border-radius: 0.6rem;
@@ -30,10 +43,29 @@
 .job {
   font-weight: bold;
   margin-bottom: 0.5rem;
+  height: 2rem;
 }
 
 .status {
   margin-bottom: 0.5rem;
+  color: map-get(mixin.$colors, 'gold');
+  font-weight: bold;
+}
+
+.Pending {
+  @include theme('gold');
+}
+
+.Interview {
+  @include theme('main');
+}
+
+.Declined {
+  @include theme('red');
+}
+
+.Offer {
+  @include theme('green');
 }
 
 .date {
