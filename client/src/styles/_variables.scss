@@ -29,6 +29,17 @@ $size: (
   'nav-height': 8rem,
 );
 
+@mixin input() {
+  width: 100%;
+  background-color: lighten(map-get($colors, 'nav-font'), 60%);
+  padding: 0.8rem 1rem;
+  border: 2px solid lighten(map-get($colors, 'nav-font'), 50%);
+  margin: 8px 0;
+  border-radius: 4px;
+}
+
+$shadow: 5px 5px 15px -4px #000000;
+
 //media queries
 $breakpoints: (
   'sm': 670px,
@@ -56,7 +67,7 @@ $breakpoints: (
   }
 }
 @mixin tabletMedia() {
-  @media screen and (min-width: map-get($breakpoints, 'md')) {
+  @media screen and (min-width: map-get($breakpoints, 'l')) {
     @content;
   }
 }

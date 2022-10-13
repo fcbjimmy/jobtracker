@@ -1,10 +1,11 @@
 import { useState, useEffect } from 'react';
-import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useAuthContext } from '../hooks/useAuthContext';
 import { schema } from '../models/createJob';
+import { FormCard, Button } from '../components';
+import style from '../styles/grid.module.scss';
 
 const CreateJob = () => {
   let navigate = useNavigate();
@@ -26,39 +27,51 @@ const CreateJob = () => {
 
   return (
     <>
-      <h1>Create Job</h1>
-      <form onSubmit={handleSubmit(onSubmitHandler)}>
-        <p>{errors.company?.message}</p>
-        <label htmlFor='company'>Company</label>
-        <input {...register('company')} type='text' placeholder='Company' id='company' />
-        <p>{errors.position?.message}</p>
-        <label htmlFor='position'>Position</label>
-        <input {...register('position')} type='text' placeholder='Position' id='position' />
-        <p>{errors.date?.message}</p>
-        <label htmlFor='date'>Date</label>
-        <input
-          {...register('date')}
-          type='date'
-          min={new Date().toISOString().slice(0, 10)}
-          id='date'
-        />
-        <label htmlFor='status'>Status</label>
-        <select
-          name='status'
-          {...register('status', {
-            required: 'select one option',
-          })}
-        >
-          <option value='Pending' />
-          <option value='Pending'>Pending</option>
-          <option value='Interview'>Interview</option>
-          <option value='Offer'>Offer</option>
-          <option value='Declined'>Declined</option>
-        </select>
-        <button disabled={isLoading} type='submit'>
-          submit
-        </button>
-      </form>
+      <FormCard title={'Create Job'}>
+        <form className={style.grid} onSubmit={handleSubmit(onSubmitHandler)}>
+          <div className={style.labelInput}>
+            <p className={style.error}>{errors.company?.message}</p>
+            <label htmlFor='company'>Company</label>
+            <input {...register('company')} type='text' placeholder='Company' id='company' />
+          </div>
+          <div className={style.labelInput}>
+            <p className={style.error}>{errors.position?.message}</p>
+            <label htmlFor='position'>Position</label>
+            <input {...register('position')} type='text' placeholder='Position' id='position' />
+          </div>
+          <div className={style.labelInput}>
+            <p className={style.error}>{errors.date?.message}</p>
+            <label htmlFor='date'>Date</label>
+            <input
+              {...register('date')}
+              type='date'
+              min={new Date().toISOString().slice(0, 10)}
+              id='date'
+            />
+          </div>
+          <div className={style.labelInput}>
+            <label htmlFor='status'>Status</label>
+            <select
+              className={style.dropdown}
+              name='status'
+              {...register('status', {
+                required: 'select one option',
+              })}
+            >
+              <option value='Pending' />
+              <option value='Pending'>Pending</option>
+              <option value='Interview'>Interview</option>
+              <option value='Offer'>Offer</option>
+              <option value='Declined'>Declined</option>
+            </select>
+          </div>
+          <div className={style.button}>
+            <Button disabled={isLoading} type='submit'>
+              Submit
+            </Button>
+          </div>
+        </form>
+      </FormCard>
     </>
   );
 };

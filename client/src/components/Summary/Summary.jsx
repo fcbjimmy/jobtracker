@@ -12,18 +12,20 @@ const Summary = () => {
 
   return (
     <Container title={'Summary'}>
-      <span className={style.offer}>
-        OFFERS <span className={style.digit}>{offers}</span>
-      </span>
-      <span className={style.interview}>
-        INTERVIEWS <span className={style.digit}>{interviews}</span>
-      </span>
-      <span className={style.decline}>
-        DECLINED <span className={style.digit}>{declined}</span>
-      </span>
-      <span className={style.pending}>
-        PENDING <span className={style.digit}>{pending}</span>
-      </span>
+      <div className={style.summary}>
+        <span className={style.offer}>
+          OFFERS <span className={style.digit}>{offers}</span>
+        </span>
+        <span className={style.interview}>
+          INTERVIEWS <span className={style.digit}>{interviews}</span>
+        </span>
+        <span className={style.decline}>
+          DECLINED <span className={style.digit}>{declined}</span>
+        </span>
+        <span className={style.pending}>
+          PENDING <span className={style.digit}>{pending}</span>
+        </span>
+      </div>
     </Container>
   );
 };

@@ -14,12 +14,13 @@ const Jobs = () => {
     <Container title={'Jobs'} filter={true} setFilteredValue={setFilteredValue}>
       <div className={style.grid}>
         {jobs
+          ?.sort(function (a, b) {
+            return new Date(a.date) - new Date(b.date);
+          })
           ?.filter((job) => {
-            if (filteredValue === '') {
+            if (job.status === filteredValue) {
               return jobs;
-            } else if (job.status === filteredValue) {
-              return jobs;
-            }
+            } else return jobs;
           })
           .map((job, index) => {
             const { _id: jobId } = job;
@@ -49,6 +50,7 @@ const Jobs = () => {
             );
           })}
       </div>
+      {jobs?.length === 0 && <div className={style.empty}>No Jobs</div>}
     </Container>
   );
 };

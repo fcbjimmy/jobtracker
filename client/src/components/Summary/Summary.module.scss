@@ -19,15 +19,15 @@
 //   border-bottom: 1px solid map-get(mixin.$colors, 'line');
 // }
 
-// .summary {
-//   padding: 1rem;
-//   background-color: map-get(mixin.$colors, 'white');
-//   border-radius: 0.6rem;
-//   display: flex;
-//   justify-content: space-evenly;
-//   flex-wrap: wrap;
-//   font-size: 0.8rem;
-// }
+.summary {
+  padding: 1rem;
+  background-color: map-get(mixin.$colors, 'white');
+  border-radius: 0.6rem;
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  font-size: 0.8rem;
+}
 
 .offer {
   color: map-get(mixin.$colors, 'green');

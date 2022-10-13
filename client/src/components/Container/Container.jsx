@@ -7,7 +7,7 @@ const Container = ({ children, title, filter, setFilteredValue }) => {
       <div className={style.title}>
         {title}{' '}
         {filter && (
-          <select onChange={(e) => setFilteredValue(e.target.value)}>
+          <select className={style.filter} onChange={(e) => setFilteredValue(e.target.value)}>
             <option value=''>All</option>
             <option value='Pending'>Pending</option>
             <option value='Interview'>Interview</option>

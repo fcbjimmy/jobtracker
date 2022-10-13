@@ -37,12 +37,7 @@
 }
 
 .container input {
-  width: 100%;
-  background-color: lighten(map-get(mixin.$colors, 'nav-font'), 60%);
-  padding: 0.8rem 1rem;
-  border: 2px solid lighten(map-get(mixin.$colors, 'nav-font'), 50%);
-  margin: 8px 0;
-  border-radius: 4px;
+  @include mixin.input;
 }
 
 li .error {

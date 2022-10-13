@@ -1,0 +1,44 @@
+@use '../styles/variables' as mixin;
+
+.grid {
+  max-width: 120rem;
+  display: grid;
+  row-gap: 1rem;
+}
+
+.labelInput {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+}
+
+input {
+  @include mixin.input;
+}
+
+.dropdown {
+  @include mixin.input;
+}
+
+.button {
+  padding: 1rem;
+}
+
+.error {
+  font-size: 0.7rem;
+  color: red;
+}
+
+@include mixin.tabletMedia() {
+  .grid {
+    grid-template-columns: repeat(4, 24%);
+    transition: all 0.5s;
+    column-gap: 0.5rem;
+  }
+
+  .button {
+    grid-column-start: 4;
+    grid-column-end: 5;
+    padding: 1rem;
+  }
+}

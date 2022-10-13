@@ -1,0 +1,36 @@
+@use '../styles/variables' as mixin;
+
+.gridEdit {
+  display: flex;
+
+  flex-direction: column;
+}
+
+.labelInput {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  flex: 2;
+}
+
+input {
+  @include mixin.input;
+}
+
+.button {
+  padding: 1rem;
+}
+
+@include mixin.tabletMedia() {
+  .gridEdit {
+    flex-direction: row;
+    transition: all 0.5s;
+    // column-gap: 0.5rem;
+    align-items: flex-end;
+  }
+
+  .button {
+    flex: 1;
+    padding: 1rem;
+  }
+}

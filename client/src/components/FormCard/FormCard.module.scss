@@ -1,0 +1,13 @@
+@use '../../styles//variables' as mixin;
+
+.container {
+  background-color: map-get(mixin.$colors, 'white');
+  min-height: 13rem;
+  box-shadow: mixin.$shadow;
+}
+
+.title {
+  font-size: 2rem;
+  font-weight: bold;
+  padding: 2rem 1.5rem;
+}

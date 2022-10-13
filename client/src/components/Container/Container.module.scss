@@ -9,7 +9,7 @@
 }
 
 .header:hover {
-  box-shadow: 5px 5px 15px -4px #000000;
+  box-shadow: mixin.$shadow;
   transition: all 0.5s;
 }
 
@@ -25,10 +25,17 @@
   padding: 1rem;
   background-color: map-get(mixin.$colors, 'white');
   border-radius: 0.6rem;
-  display: flex;
-  justify-content: space-evenly;
-  flex-wrap: wrap;
+  // display: flex;
+  // width: 100%;
+  // justify-content: center;
+  // flex-wrap: wrap;
   font-size: 0.8rem;
+  position: relative;
+}
+
+.filter {
+  border-radius: 0.3rem;
+  font-weight: bold;
 }
 
 // .offer {

@@ -23,7 +23,6 @@ const Dashboard = () => {
     <>
       <Summary />
       {!isLoading && user && <Jobs />}
-      {jobs?.length === 0 && <div>No JOBS</div>}
     </>
   );
 };

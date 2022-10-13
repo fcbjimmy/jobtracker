@@ -8,10 +8,10 @@
 }
 
 .grid {
-  width: 100%;
-  display: grid;
+  display: flex;
+  flex-direction: column;
   justify-content: center;
-  gap: 2.5rem;
+  align-items: center;
 }
 
 .container {
@@ -20,8 +20,8 @@
   border: 1px solid map-get(mixin.$colors, 'line');
   border-radius: 0.6rem;
   margin: 1rem 0;
-  max-width: 17.4rem;
-  min-height: 11rem;
+  width: 19rem;
+  min-height: 13rem;
   display: flex;
   flex-direction: column;
   transition: all 0.5s;
@@ -29,7 +29,7 @@
 }
 
 .container:hover {
-  box-shadow: 5px 5px 15px -4px #000000;
+  box-shadow: mixin.$shadow;
   transition: all 0.5s;
 }
 
@@ -95,7 +95,7 @@ i {
   border: 1px solid map-get(mixin.$colors, 'main');
   border-radius: 0.2rem;
   cursor: pointer;
-  margin-top: 0.5rem;
+  margin-top: 0.8rem;
   margin-right: 0.8rem;
   color: map-get(mixin.$colors, 'white');
   transition: all 0.5s;
@@ -108,14 +108,23 @@ i {
   border: 1px solid map-get(mixin.$colors, 'red');
   border-radius: 0.2rem;
   cursor: pointer;
-  margin-top: 0.5rem;
+  margin-top: 0.8rem;
   margin-right: 0.8rem;
   color: map-get(mixin.$colors, 'white');
   transition: all 0.5s;
 }
 
+.empty {
+  font-size: 2rem;
+  font-weight: bold;
+}
+
 @include mixin.tabletMedia() {
   .grid {
+    width: 100%;
+    display: grid;
+    gap: 2.5rem;
+    justify-content: center;
     grid-template-columns: repeat(2, 20rem);
   }
 }
@@ -123,11 +132,9 @@ i {
 @include mixin.largerthanphone() {
   .container {
     max-width: 19rem;
-    min-height: 13rem;
     transition: all 0.5s;
   }
   .content {
-    padding: 1rem;
     transition: all 0.5s;
   }
   .edit {

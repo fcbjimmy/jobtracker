@@ -2,6 +2,8 @@ import * as yup from 'yup';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useAuthContext } from '../hooks/useAuthContext';
+import { FormCard, Button } from '../components';
+import style from '../styles/gridEdit.module.scss';
 
 export const schema = yup.object().shape({
   email: yup.string().email('Please enter a valid email!').required('Email is required!'),
@@ -25,18 +27,25 @@ const EditUser = () => {
 
   return (
     <>
-      <h1>Edit User</h1>
-      <form onSubmit={handleSubmit(onSubmitHandler)}>
-        <p>{errors.name?.message}</p>
-        <label htmlFor='name'>Name</label>
-        <input {...register('name')} type='name' id='name' placeholder='Name' />
-        <p>{errors.email?.message}</p>
-        <label htmlFor='email'>Email</label>
-        <input {...register('email')} type='email' placeholder='Email' id='email' />
-        <button disabled={isLoading} type='submit'>
-          Submit
-        </button>
-      </form>
+      <FormCard title={'Edit User'}>
+        <form className={style.gridEdit} onSubmit={handleSubmit(onSubmitHandler)}>
+          <div className={style.labelInput}>
+            <p>{errors.name?.message}</p>
+            <label htmlFor='name'>Name</label>
+            <input {...register('name')} type='name' id='name' placeholder='Name' />
+          </div>
+          <div className={style.labelInput}>
+            <p>{errors.email?.message}</p>
+            <label htmlFor='email'>Email</label>
+            <input {...register('email')} type='email' placeholder='Email' id='email' />
+          </div>
+          <div className={style.button}>
+            <Button disabled={isLoading} type='submit'>
+              Submit
+            </Button>
+          </div>
+        </form>
+      </FormCard>
     </>
   );
 };
