@@ -5,6 +5,7 @@ import { useAuthContext } from '../hooks/useAuthContext';
 import { schema } from '../models/editjob';
 import { FormCard, Button } from '../components/';
 import style from '../styles/grid.module.scss';
+import { motion } from 'framer-motion';
 
 const EditJob = () => {
   const { user, jobs, isLoading, allJobs, editSingleJob } = useAuthContext();
@@ -31,7 +32,12 @@ const EditJob = () => {
   };
 
   return (
-    <>
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: -20 }}
+      transition={{ duration: 1 }}
+    >
       <FormCard title={'Edit'}>
         <form className={style.grid} onSubmit={handleSubmit(onSubmitHandler)}>
           <div className={style.labelInput}>
@@ -76,7 +82,7 @@ const EditJob = () => {
           </div>
         </form>
       </FormCard>
-    </>
+    </motion.div>
   );
 };
 

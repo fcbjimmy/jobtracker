@@ -6,6 +6,7 @@ import { useAuthContext } from '../hooks/useAuthContext';
 import { schema } from '../models/createJob';
 import { FormCard, Button } from '../components';
 import style from '../styles/grid.module.scss';
+import { motion } from 'framer-motion';
 
 const CreateJob = () => {
   let navigate = useNavigate();
@@ -26,7 +27,12 @@ const CreateJob = () => {
   };
 
   return (
-    <>
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: -20 }}
+      transition={{ duration: 1 }}
+    >
       <FormCard title={'Create Job'}>
         <form className={style.grid} onSubmit={handleSubmit(onSubmitHandler)}>
           <div className={style.labelInput}>
@@ -72,7 +78,7 @@ const CreateJob = () => {
           </div>
         </form>
       </FormCard>
-    </>
+    </motion.div>
   );
 };
 

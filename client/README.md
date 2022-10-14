@@ -37,3 +37,6 @@ https://stackoverflow.com/questions/70569816/highlight-active-link-in-new-react-
 
 - Lottie animation duplicated
   https://stackoverflow.com/questions/72031767/use-effect-is-repeating-lottie-animation
+
+- framer motion
+  https://www.section.io/engineering-education/page-transition-in-react-using-framer-motion/

@@ -6,6 +6,7 @@ import { schema } from '../models/login';
 import { useAuthContext } from '../hooks/useAuthContext';
 import { Button } from '../components/';
 import style from '../styles/SignInUpCard.module.scss';
+import { motion } from 'framer-motion';
 
 const Login = () => {
   const {
@@ -32,7 +33,12 @@ const Login = () => {
   }, [user]);
 
   return (
-    <>
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: -20 }}
+      transition={{ duration: 1 }}
+    >
       <section className={style.section}>
         <div className={style.container}>
           <form onSubmit={handleSubmit(onSubmitHandler)}>
@@ -67,7 +73,7 @@ const Login = () => {
           </form>
         </div>
       </section>
-    </>
+    </motion.div>
   );
 };
 

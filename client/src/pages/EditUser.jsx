@@ -4,6 +4,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { useAuthContext } from '../hooks/useAuthContext';
 import { FormCard, Button } from '../components';
 import style from '../styles/gridEdit.module.scss';
+import { motion } from 'framer-motion';
 
 export const schema = yup.object().shape({
   email: yup.string().email('Please enter a valid email!').required('Email is required!'),
@@ -26,7 +27,12 @@ const EditUser = () => {
   };
 
   return (
-    <>
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: -20 }}
+      transition={{ duration: 1 }}
+    >
       <FormCard title={'Edit User'}>
         <form className={style.gridEdit} onSubmit={handleSubmit(onSubmitHandler)}>
           <div className={style.labelInput}>
@@ -46,7 +52,7 @@ const EditUser = () => {
           </div>
         </form>
       </FormCard>
-    </>
+    </motion.div>
   );
 };
 
