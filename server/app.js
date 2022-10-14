@@ -7,7 +7,7 @@ const app = express();
 
 //extra packages/security packages
 const cors = require("cors");
-app.use(cors());
+
 const helmet = require("helmet");
 const xss = require("xss-clean");
 const mongoSanitize = require("express-mongo-sanitize");
@@ -26,7 +26,8 @@ const notFound = require("./middleware/not-found");
 const errorHandlerMiddleware = require("./middleware/error-handler");
 
 //routers
-app.use(cookieParser(process.env.JWT_SECRET));
+app.use(cors());
+// app.use(cookieParser(process.env.JWT_SECRET));
 app.use(express.json());
 app.use(helmet());
 app.use(xss());
