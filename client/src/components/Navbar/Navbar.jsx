@@ -29,33 +29,18 @@ const Navbar = () => {
           <a href='https://github.com/fcbjimmy/jobtracker' rel='noreferrer' target='_blank'>
             <li className={style.list}>Source Code</li>
           </a>
-          {user ? (
-            <NavLink
-              to='/edituser'
-              className={({ isActive }) => (isActive ? style.activeStyle : undefined)}
-            >
-              <li className={style.list}>Profile</li>
-            </NavLink>
-          ) : (
-            <NavLink
-              to='/signup'
-              className={({ isActive }) => (isActive ? style.activeStyle : undefined)}
-            >
-              <li className={style.list}>Sign Up</li>
-            </NavLink>
-          )}
-          {user ? (
-            <li className={style.list} onClick={() => logoutUser()}>
-              Log out
-            </li>
-          ) : (
-            <NavLink
-              to='/login'
-              className={({ isActive }) => (isActive ? style.activeStyle : undefined)}
-            >
-              <li className={style.list}>Log in</li>
-            </NavLink>
-          )}
+          <NavLink
+            to='/signup'
+            className={({ isActive }) => (isActive ? style.activeStyle : undefined)}
+          >
+            <li className={style.list}>Sign Up</li>
+          </NavLink>
+          <NavLink
+            to='/login'
+            className={({ isActive }) => (isActive ? style.activeStyle : undefined)}
+          >
+            <li className={style.list}>Log in</li>
+          </NavLink>
         </ul>
       </div>
       {!showNav ? (

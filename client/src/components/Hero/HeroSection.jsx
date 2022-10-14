@@ -30,8 +30,17 @@ const HeroSection = () => {
           App built using React, CSS and SASS in the front-end, <br />
           while using Express and MongoDB in the back-end.
         </p>
+
         <span onClick={() => navigate('/login')}>
           <Button>Login/Signup</Button>
+        </span>
+
+        <span>
+          By&nbsp;
+          <a href='https://github.com/fcbjimmy/jobtracker' rel='noreferrer' target='_blank'>
+            Jimmy
+          </a>
+          &nbsp;😎
         </span>
       </div>
       <div className={style.animation} ref={anime}></div>

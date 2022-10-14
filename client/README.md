@@ -40,3 +40,7 @@ https://stackoverflow.com/questions/70569816/highlight-active-link-in-new-react-
 
 - framer motion
   https://www.section.io/engineering-education/page-transition-in-react-using-framer-motion/
+
+## Deploy
+
+- npm run build

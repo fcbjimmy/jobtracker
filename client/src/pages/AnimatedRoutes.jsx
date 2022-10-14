@@ -9,7 +9,7 @@ const AnimatedRoutes = () => {
   const { user } = useAuthContext();
   const location = useLocation();
   return (
-    <AnimatePresence exitBeforeEnter>
+    <AnimatePresence mode='wait'>
       <SideNav>
         <Routes key={location.pathname} location={location}>
           <Route path='/' element={!user ? <Hero /> : <Navigate to='/dashboard' />} />

@@ -8,6 +8,9 @@ const app = express();
 //extra packages/security packages
 const cors = require("cors");
 app.use(cors());
+const helmet = require("helmet");
+const xss = require("xss-clean");
+const mongoSanitize = require("express-mongo-sanitize");
 
 //db
 const connectDB = require("./db/connectDB");
@@ -18,13 +21,17 @@ const userRouter = require("./routes/userRoutes");
 const jobRouter = require("./routes/jobRoutes");
 
 //middleware
-const cookieParser = require("cookie-parser");
+// const cookieParser = require("cookie-parser");
 const notFound = require("./middleware/not-found");
 const errorHandlerMiddleware = require("./middleware/error-handler");
 
 //routers
 app.use(cookieParser(process.env.JWT_SECRET));
 app.use(express.json());
+app.use(helmet());
+app.use(xss());
+app.use(mongoSanitize());
+
 app.get("/", (req, res) => {
   res.send("hello world");
 });
