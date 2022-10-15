@@ -44,3 +44,5 @@ https://stackoverflow.com/questions/70569816/highlight-active-link-in-new-react-
 ## Deploy
 
 - npm run build
+
+https://stackoverflow.com/questions/18864677/what-is-process-env-port-in-node-js

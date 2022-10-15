@@ -17,10 +17,12 @@ const Jobs = () => {
           ?.sort(function (a, b) {
             return new Date(a.date) - new Date(b.date);
           })
-          ?.filter((job) => {
+          .filter((job) => {
             if (job.status === filteredValue) {
-              return jobs;
-            } else return jobs;
+              return job;
+            } else if (filteredValue === '') {
+              return job;
+            }
           })
           .map((job, index) => {
             const { _id: jobId } = job;
