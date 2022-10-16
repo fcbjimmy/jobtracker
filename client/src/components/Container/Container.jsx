@@ -1,5 +1,4 @@
 import style from './Container.module.scss';
-import { useAuthContext } from '../../hooks/useAuthContext.js';
 
 const Container = ({ children, title, filter, setFilteredValue }) => {
   return (

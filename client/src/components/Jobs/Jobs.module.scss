@@ -20,7 +20,7 @@
   border: 1px solid map-get(mixin.$colors, 'line');
   border-radius: 0.6rem;
   margin: 1rem 0;
-  width: 19rem;
+  width: 15.5rem;
   min-height: 13rem;
   display: flex;
   flex-direction: column;
@@ -131,7 +131,7 @@ i {
 
 @include mixin.largerthanphone() {
   .container {
-    max-width: 19rem;
+    width: 19rem;
     transition: all 0.5s;
   }
   .content {

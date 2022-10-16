@@ -60,6 +60,7 @@ const SignUp = () => {
         <div className={style.container}>
           <form onSubmit={handleSubmit(onSubmitHandler)}>
             <h1>Sign Up</h1>
+            {isLoading && <h5>Redirecting...</h5>}
             <ul>
               <li>
                 <p className={style.error}>{errors.name?.message}</p>
