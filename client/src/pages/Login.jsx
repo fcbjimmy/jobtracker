@@ -60,9 +60,7 @@ const Login = () => {
                 />
               </li>
               <li>
-                <Button disabled={isLoading} type='submit'>
-                  Log In
-                </Button>
+                <Button type={'submit'}>Log In</Button>
               </li>
               <li>
                 <p className={style.paragraph}>

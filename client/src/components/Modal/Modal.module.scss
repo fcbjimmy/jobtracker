@@ -1,0 +1,62 @@
+@use '../../styles//variables' as mixin;
+
+.modal {
+  // display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  padding-top: 30vh; /* Location of the box */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity*/
+  text-align: center;
+}
+
+.content {
+  background-color: #fefefe;
+  margin: auto;
+  padding: 20px;
+  border-top: 1px solid #888;
+  border-left: 1px solid #888;
+  border-right: 1px solid #888;
+  width: 60%;
+}
+
+.options {
+  background-color: #fefefe;
+  margin: auto;
+  padding: 20px;
+  width: 60%;
+  display: flex;
+  justify-content: center;
+  gap: 5rem;
+  border-bottom: 1px solid #888;
+  border-left: 1px solid #888;
+  border-right: 1px solid #888;
+}
+
+.yes {
+  font-weight: bold;
+  cursor: pointer;
+  color: map-get(mixin.$colors, 'green');
+}
+
+.yes:hover {
+  font-weight: bold;
+  cursor: pointer;
+  color: map-get(mixin.$colors, 'green');
+}
+
+.no {
+  font-weight: bold;
+  cursor: pointer;
+  color: map-get(mixin.$colors, 'red');
+}
+
+.no:hover {
+  font-weight: bold;
+  cursor: pointer;
+  color: map-get(mixin.$colors, 'red');
+}

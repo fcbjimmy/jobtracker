@@ -4,7 +4,7 @@ import { FcCalendar } from 'react-icons/fc';
 import { useNavigate } from 'react-router-dom';
 
 const Jobs = ({ filteredValue }) => {
-  const { jobs, deleteSingleJob } = useAuthContext();
+  const { jobs, deleteSingleJob, toggleModal, setToggleModal, setDeleteJobId } = useAuthContext();
   let navigate = useNavigate();
 
   return (
@@ -40,7 +40,13 @@ const Jobs = ({ filteredValue }) => {
                 <span className={style.edit} onClick={() => navigate(`/editjob/${index}`)}>
                   Edit
                 </span>{' '}
-                <span className={style.delete} onClick={() => deleteSingleJob({ jobId })}>
+                <span
+                  className={style.delete}
+                  onClick={() => {
+                    setToggleModal(!toggleModal);
+                    setDeleteJobId({ jobId });
+                  }}
+                >
                   Delete
                 </span>
               </div>

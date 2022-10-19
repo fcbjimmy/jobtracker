@@ -6,9 +6,10 @@ import { MdDashboard, MdCreateNewFolder } from 'react-icons/md';
 import { FiLogOut, FiMenu } from 'react-icons/fi';
 import { useAuthContext } from '../../hooks/useAuthContext';
 import { Header } from '../index';
+import { Modal } from '../index.js';
 
 const SideNav = ({ children }) => {
-  const { user, logoutUser } = useAuthContext();
+  const { user, logoutUser, toggleModal } = useAuthContext();
   const [isOpen, setIsOpen] = useState(false);
   const toggle = () => setIsOpen(!isOpen);
   const menu = [
@@ -60,6 +61,7 @@ const SideNav = ({ children }) => {
           </div>
         </div>
       )}
+      {toggleModal && <Modal />}
       {!user && <main>{children}</main>}
     </>
   );

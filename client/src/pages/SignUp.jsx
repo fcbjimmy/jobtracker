@@ -93,9 +93,7 @@ const SignUp = () => {
                 />
               </li>
               <li>
-                <Button disabled={isLoading} type='submit'>
-                  Sign Up
-                </Button>
+                <Button type={'submit'}>Sign Up</Button>
               </li>
               <li>
                 <p className={style.paragraph}>

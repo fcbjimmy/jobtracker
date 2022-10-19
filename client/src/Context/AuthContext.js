@@ -1,4 +1,4 @@
-import { createContext, useReducer } from 'react';
+import { createContext, useReducer, useState } from 'react';
 import { toast } from 'react-toastify';
 import axios from 'axios';
 import { reducer } from './reducer';
@@ -15,6 +15,8 @@ export const AuthContextProvider = ({ children }) => {
     token: token ? token : null,
     jobs: [],
   });
+  const [toggleModal, setToggleModal] = useState(false);
+  const [deleteJobId, setDeleteJobId] = useState({});
 
   console.log('AuthContext state: ', state);
 
@@ -150,8 +152,8 @@ export const AuthContextProvider = ({ children }) => {
     }
   };
 
-  const deleteSingleJob = async ({ jobId }) => {
-    console.log('job state: ', state.jobs);
+  const deleteSingleJob = async ({ deleteJobId }) => {
+    const { jobId } = deleteJobId;
     try {
       dispatch({ type: 'SETUP_DELETE_BEGIN' });
       const response = await authFetch.delete(`/jobs/${jobId}`);
@@ -159,6 +161,8 @@ export const AuthContextProvider = ({ children }) => {
       console.log(filteredJobs);
       dispatch({ type: 'SETUP_DELETE_SUCCESS', payload: filteredJobs });
       toast.success(`${response?.data?.msg}`, { position: 'top-center' });
+      setToggleModal(!toggleModal);
+      setDeleteJobId({});
     } catch (error) {
       console.log(error);
     }
@@ -197,6 +201,10 @@ export const AuthContextProvider = ({ children }) => {
         allJobs,
         editUserInfo,
         authFetch,
+        setToggleModal,
+        toggleModal,
+        deleteJobId,
+        setDeleteJobId,
       }}
     >
       {children}
