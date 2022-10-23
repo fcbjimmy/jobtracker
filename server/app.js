@@ -15,7 +15,7 @@ const mongoSanitize = require("express-mongo-sanitize");
 //db
 const connectDB = require("./db/connectDB");
 
-//routes
+//routers
 const authRouter = require("./routes/authRoutes");
 const userRouter = require("./routes/userRoutes");
 const jobRouter = require("./routes/jobRoutes");
@@ -25,7 +25,7 @@ const jobRouter = require("./routes/jobRoutes");
 const notFound = require("./middleware/not-found");
 const errorHandlerMiddleware = require("./middleware/error-handler");
 
-//routers
+//routes
 app.use(cors());
 // app.use(cookieParser(process.env.JWT_SECRET));
 app.use(express.json());
@@ -43,8 +43,6 @@ app.use("/api/v1/jobs", jobRouter);
 
 app.use(errorHandlerMiddleware);
 app.use(notFound);
-
-//routes
 
 //port
 const port = process.env.PORT || 4000;
