@@ -15,7 +15,7 @@ const mongoSanitize = require("express-mongo-sanitize");
 //db
 const connectDB = require("./db/connectDB");
 
-//routers
+//routes
 const authRouter = require("./routes/authRoutes");
 const userRouter = require("./routes/userRoutes");
 const jobRouter = require("./routes/jobRoutes");
